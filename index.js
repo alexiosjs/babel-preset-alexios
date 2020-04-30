@@ -9,8 +9,8 @@ function gen(api, opts, nodeEnv) {
     },
     opts
   );
-  var IS_DEV = !!("development" === nodeEnv || "development" === opts.env);
-  var IS_PROD = !!("production" === nodeEnv || "production" === opts.env);
+  var IS_DEV = !!("development" === nodeEnv);
+  var IS_PROD = !!("production" === nodeEnv);
   return {
     presets: [
       [
@@ -76,9 +76,9 @@ module.exports = function (api, opts) {
     opts = {};
   }
 
-  if (nodeEnv === "development") {
+  if (nodeEnv === "development" || opts.env === "development") {
     return gen(api, opts, "development");
-  } else if (nodeEnv === "production") {
+  } else if (nodeEnv === "production" || opts.env === "production") {
     return gen(api, opts, "production");
   } else {
     throw new Error(
