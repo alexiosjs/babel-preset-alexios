@@ -36,7 +36,11 @@ function gen(api, opts, nodeEnv) {
     ].filter(Boolean),
     plugins: [
       require("babel-plugin-macros"),
-      require("@babel/plugin-proposal-decorators").default, // class-properties的优先级必须排在decorators的后面
+      [
+        require("@babel/plugin-proposal-decorators").default,
+        false
+      ], 
+      // class-properties的优先级必须排在decorators的后面
       [
         require("@babel/plugin-proposal-class-properties").default,
         {
