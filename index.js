@@ -9,8 +9,8 @@ function gen(api, opts, nodeEnv) {
     },
     opts
   );
-  var IS_DEV = !!("development" === nodeEnv);
-  var IS_PROD = !!("production" === nodeEnv);
+  var IS_DEV = !!("development" === nodeEnv || "development" === opts.env);
+  var IS_PROD = !!("production" === nodeEnv || "production" === opts.env);
   return {
     presets: [
       [
@@ -82,7 +82,7 @@ module.exports = function (api, opts) {
     return gen(api, opts, "production");
   } else {
     throw new Error(
-      '\n\nUsing "babel-preset-alexios", you must set process.env.NODE_ENV to "development" or "production".\n\n '
+      '\n\nUsing "babel-preset-alexios", you must set process.env.NODE_ENV or preset\'s options.env to "development" or "production".\n\n '
     );
   }
 };
