@@ -1,0 +1,17 @@
+{
+  "name": "babel-preset-alexios",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexiosjs/babel-preset-alexios.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexiosjs/babel-preset-alexios/issues"
+  },
+  "homepage": "https://github.com/alexiosjs/babel-preset-alexios#readme"
+}
