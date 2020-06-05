@@ -14,7 +14,7 @@ function gen(api, opts, nodeEnv) {
   return {
     presets: [
       [
-        require("@babel/preset-env").default,
+        require.resolve("@babel/preset-env"),
         {
           /**
            * 保证入口文件出引入的polyfill能被正确处理
@@ -27,7 +27,7 @@ function gen(api, opts, nodeEnv) {
         },
       ],
       [
-        require("@babel/preset-react").default,
+        require.resolve("@babel/preset-react"),
         {
           development: IS_DEV,
           useBuiltIns: true,
@@ -36,20 +36,17 @@ function gen(api, opts, nodeEnv) {
     ].filter(Boolean),
     plugins: [
       require("babel-plugin-macros"),
-      [
-        require("@babel/plugin-proposal-decorators").default,
-        false
-      ], 
+      [require.resolve("@babel/plugin-proposal-decorators"), false],
       // class-properties的优先级必须排在decorators的后面
       [
-        require("@babel/plugin-proposal-class-properties").default,
+        require.resolve("@babel/plugin-proposal-class-properties"),
         {
           loose: true,
         },
       ],
-      require("@babel/plugin-proposal-numeric-separator").default,
+      require.resolve("@babel/plugin-proposal-numeric-separator"),
       [
-        require("@babel/plugin-transform-runtime").default,
+        require.resolve("@babel/plugin-transform-runtime"),
         {
           corejs: false,
           helpers: false,
@@ -58,13 +55,15 @@ function gen(api, opts, nodeEnv) {
         },
       ],
       IS_PROD && [
-        require("babel-plugin-transform-react-remove-prop-types").default,
+        require.resolve("babel-plugin-transform-react-remove-prop-types"),
         {
           removeImport: true,
         },
       ],
-      require("@babel/plugin-proposal-optional-chaining").default,
-      require("@babel/plugin-proposal-nullish-coalescing-operator").default,
+      require.resolve("@babel/plugin-proposal-optional-chaining"),
+      require.resolve("@babel/plugin-proposal-nullish-coalescing-operator"),
+      require.resolve("./plugins/auto-switch-css-module.js"),
+      ["dynamic-import-node", { noInterop: true }],
     ].filter(Boolean),
   };
 }
