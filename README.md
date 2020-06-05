@@ -15,7 +15,7 @@ Like this:
 
 ```javascript
 // your js code
-process.env.NODE_ENV = "development" // or "production";
+process.env.NODE_ENV = "development"; // or "production";
 ```
 
 ```json
@@ -35,7 +35,7 @@ presets: [
 
 We have collected most of the `plugins` and `preset` you need for development, provide the same `zero configuration` experience as `create-react-app`
 
-presets: 
+presets:
 
 - @babel/preset-env
 - @babel/preset-react
@@ -51,6 +51,33 @@ plugins:
 - @babel/runtime
 - babel-plugin-macros
 - babel-plugin-transform-react-remove-prop-types
+- babel-plugin-dynamic-import-node
+
+extra:
+
+- Automatically identify whether to import style files in the way of `cssModule`, if so, the `import statements` will be automatically added with `?css_modules` suffix, you can use this in your `webpack config`. Support: `css`, `less`, `scss`, `sass`, `stylus`, `style`. For example:
+
+```js
+rules: [
+  {
+    oneOf: [
+      {
+        test: /\.css$/,
+        resourceQuery: /css_modules/,
+        use: [
+          { loader: "style-loader" },
+          { loader: "css-loader", options: { modules: true } },
+        ],
+      },
+      {
+        test: /\.css$/,
+        resourceQuery: /css_modules/,
+        use: [{ loader: "style-loader" }, { loader: "css-loader" }],
+      },
+    ],
+  },
+];
+```
 
 ### TypeScript
 
@@ -58,15 +85,15 @@ We do not provide the ability to compile `.ts` files, if you want, you can first
 
 ```javascript
 rules: [
-    {
-        test: /\.(ts|tsx)$/,
-        exclude: /node_modules|bower_components/,
-        loader: [
-            "babel-loader", // make sure you have config the babel-preset-alexios
-            "ts-loader" // any way you like
-        ]
-    }
-]
+  {
+    test: /\.(ts|tsx)$/,
+    exclude: /node_modules|bower_components/,
+    loader: [
+      "babel-loader", // make sure you have config the babel-preset-alexios
+      "ts-loader", // any way you like
+    ],
+  },
+];
 ```
 
 ### Compatibility
