@@ -63,7 +63,6 @@ function gen(api, opts, nodeEnv) {
       require.resolve("@babel/plugin-proposal-optional-chaining"),
       require.resolve("@babel/plugin-proposal-nullish-coalescing-operator"),
       require.resolve("./plugins/auto-switch-css-module.js"),
-      ["dynamic-import-node", { noInterop: true }],
     ].filter(Boolean),
   };
 }

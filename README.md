@@ -51,7 +51,6 @@ plugins:
 - @babel/runtime
 - babel-plugin-macros
 - babel-plugin-transform-react-remove-prop-types
-- babel-plugin-dynamic-import-node
 
 extra:
 
