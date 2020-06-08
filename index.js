@@ -33,10 +33,16 @@ function gen(api, opts, nodeEnv) {
           useBuiltIns: true,
         },
       ],
+      "@babel/preset-typescript",
     ].filter(Boolean),
     plugins: [
       require("babel-plugin-macros"),
-      [require.resolve("@babel/plugin-proposal-decorators"), false],
+      [
+        require.resolve("@babel/plugin-proposal-decorators"),
+        {
+          legacy: true,
+        },
+      ],
       // class-properties的优先级必须排在decorators的后面
       [
         require.resolve("@babel/plugin-proposal-class-properties"),
