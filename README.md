@@ -39,6 +39,7 @@ presets:
 
 - @babel/preset-env
 - @babel/preset-react
+- @babel/preset-typescript
 
 plugins:
 
@@ -80,20 +81,7 @@ rules: [
 
 ### TypeScript
 
-We do not provide the ability to compile `.ts` files, if you want, you can first convert it to `js` code in any way you like, then use `babel-preset-alexios`, here's an example in `webpack`:
-
-```javascript
-rules: [
-  {
-    test: /\.(ts|tsx)$/,
-    exclude: /node_modules|bower_components/,
-    loader: [
-      "babel-loader", // make sure you have config the babel-preset-alexios
-      "ts-loader", // any way you like
-    ],
-  },
-];
-```
+Automatic translation of `typescript`, but `ts syntax` checking at runtime is not supported, if necessary, you can do this by configuring tsconfig to work with the editor.
 
 ### Compatibility
 
